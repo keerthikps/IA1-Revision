@@ -1,0 +1,67 @@
+gcc -g p6final.c
+gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) br main
+Breakpoint 1 at 0x8c4: file p6final.c, line 29.
+(gdb) r
+Starting program: /home/runner/IA1-Revision/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p6final.c:29
+29  {
+(gdb) n
+31    input_two_string(a,b);
+(gdb) s
+input_two_string (a=0x7ffc331c1c90 "\370\034\034\063\374\177", 
+    b=0x7ffc331c1cb0 "@[z\025\276\177") at p6final.c:4
+4     printf("Enter 2 words\n");
+(gdb) n
+Enter 2 words
+5     scanf("%s%s",a,b);
+(gdb) n
+world
+hello
+6   }
+(gdb) n
+main () at p6final.c:33
+33    s=strcmp(a,b);
+(gdb) s
+strcmp (a=0x7ffc331c1c90 "world", b=0x7ffc331c1cb0 "hello") at p6final.c:10
+10    for(i=0;a[i]&&(a[i]==b[i]);i++);
+(gdb) n
+11    return a[i]-b[i];
+(gdb) n
+12  }
+(gdb) n
+main () at p6final.c:34
+34    output(a,b,s);
+(gdb) s
+output (a=0x7ffc331c1c90 "world", b=0x7ffc331c1cb0 "hello", result=15)
+    at p6final.c:15
+15    if(result>0)
+(gdb) n
+17      printf("%s is greater than %s\n",a,b);
+(gdb) n
+world is greater than hello
+27  }
+(gdb) n
+main () at p6final.c:35
+35    return 0;
+(gdb) c
+Continuing.
+[Inferior 1 (process 579) exited normally]
+(gdb) q
